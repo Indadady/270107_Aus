@@ -74,6 +74,8 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .animate-fade-in-up { animation: fadeInUp .8s ease-out forwards; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        header.site-header, #event-day-bar { background-color: #fefefe; }
+        .qb-logo { background-color: #fefefe; display: block; }
         section { scroll-margin-top: 80px; }
         body.event-day section { scroll-margin-top: 148px; }
         #phrase-modal { backdrop-filter: blur(5px); }
@@ -274,10 +276,10 @@
   </div>
 </div>
 
-<header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-sky-100 shadow-sm no-print">
+<header class="site-header fixed top-0 w-full z-50 border-b border-sky-100 shadow-sm no-print">
   <div class="max-w-6xl mx-auto px-3 md:px-4 h-16 flex items-center justify-between gap-2">
-    <a href="#home" class="flex items-center gap-2 shrink-0">
-      <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPMO83G1xHJIu1jKvn1GjQn_C3z42tM-LYvYPKcGIaYkarv47vw5TlYsJFjZxRLVm4e0yQutvIHXQ_VBUHdlu2p25QP7z1NAK2XsEUNUpxycDMpLzi7TJ390gXDpD5orf1OBAXwbwnPrasas06glRIv9rpqwN1YEQvy2fPbKRU4Ogpbo8SyH7NEnt-1FY=w320-h101" alt="큐비글로벌 QB Global" class="h-8 md:h-9">
+    <a href="#home" class="flex items-center gap-2 shrink-0 bg-[#fefefe]">
+      <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPMO83G1xHJIu1jKvn1GjQn_C3z42tM-LYvYPKcGIaYkarv47vw5TlYsJFjZxRLVm4e0yQutvIHXQ_VBUHdlu2p25QP7z1NAK2XsEUNUpxycDMpLzi7TJ390gXDpD5orf1OBAXwbwnPrasas06glRIv9rpqwN1YEQvy2fPbKRU4Ogpbo8SyH7NEnt-1FY=w320-h101" alt="큐비글로벌 QB Global" class="qb-logo h-8 md:h-9">
     </a>
     <nav class="flex-1 overflow-x-auto no-scrollbar">
       <div class="flex items-center gap-0.5 md:gap-1 min-w-max justify-end">
@@ -289,6 +291,7 @@
         <a href="#schedule" class="px-2 md:px-2.5 py-2 text-xs md:text-sm font-bold text-slate-600 hover:bg-sky-50 rounded-lg">일정</a>
         <a href="#hotel" class="px-2 md:px-2.5 py-2 text-xs md:text-sm font-bold text-slate-600 hover:bg-sky-50 rounded-lg">숙소</a>
         <a href="#smart-info" class="px-2 md:px-2.5 py-2 text-xs md:text-sm font-bold text-slate-600 hover:bg-sky-50 rounded-lg">날씨</a>
+        <a href="#phrases" class="px-2 md:px-2.5 py-2 text-xs md:text-sm font-bold text-slate-600 hover:bg-sky-50 rounded-lg">영어</a>
         <a href="#check" class="px-2 md:px-2.5 py-2 text-xs md:text-sm font-bold text-slate-600 hover:bg-sky-50 rounded-lg">준비물</a>
         <a href="#contact" class="px-2 md:px-2.5 py-2 text-xs md:text-sm font-bold text-slate-600 hover:bg-sky-50 rounded-lg">비상연락</a>
         <button type="button" onclick="shareLink()" class="ml-1 px-2.5 py-1.5 text-xs font-bold bg-sky-600 text-white rounded-lg"><i class="fa-solid fa-share-nodes"></i></button>
@@ -297,7 +300,7 @@
   </div>
 </header>
 
-<div id="event-day-bar" class="hidden sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-sky-100 shadow-sm no-print">
+<div id="event-day-bar" class="hidden sticky top-16 z-40 border-b border-sky-100 shadow-sm no-print">
   <div class="max-w-6xl mx-auto px-4 py-2.5 flex gap-2 justify-center">
     <button type="button" onclick="goToTodaySchedule()" class="flex-1 max-w-xs bg-sky-600 text-white font-bold text-sm py-2.5 rounded-xl shadow-md">오늘의 일정</button>
     <button type="button" onclick="goToTodayRoute()" class="flex-1 max-w-xs bg-white text-sky-700 border-2 border-sky-200 font-bold text-sm py-2.5 rounded-xl">당일 동선</button>
@@ -616,18 +619,62 @@
 
 <section id="phrases" class="py-16 bg-white border-t border-slate-100">
   <div class="max-w-6xl mx-auto px-4">
-    <p class="text-sky-600 font-bold text-sm tracking-widest mb-2">ENGLISH PHRASES</p>
+    <p class="text-sky-600 font-bold text-sm tracking-widest mb-2">CAMPUS ENGLISH</p>
     <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">원클릭 실전 영어</h2>
-    <p class="text-slate-500 text-sm mb-6">버튼을 눌러 화면을 보여 주세요.</p>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <button type="button" onclick="showPhrase('👋','안녕하세요','Hello / G\'day','Hello! / G\'day!')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left"><span class="text-2xl">👋</span><p class="font-bold text-sm mt-2">인사</p></button>
-      <button type="button" onclick="showPhrase('🙏','감사합니다','Thank you','Thank you!')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left"><span class="text-2xl">🙏</span><p class="font-bold text-sm mt-2">감사</p></button>
-      <button type="button" onclick="showPhrase('🚻','화장실 어디인가요?','Where is the bathroom?','Where is the bathroom?')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left"><span class="text-2xl">🚻</span><p class="font-bold text-sm mt-2">화장실</p></button>
-      <button type="button" onclick="showPhrase('📶','와이파이 비밀번호요','Wi-Fi password please','What\'s the Wi-Fi password?')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left"><span class="text-2xl">📶</span><p class="font-bold text-sm mt-2">와이파이</p></button>
-      <button type="button" onclick="showPhrase('🍽️','메뉴 추천 부탁해요','Any recommendations?','Any recommendations?')" class="bg-amber-50 hover:bg-amber-100 border border-amber-100 rounded-xl p-4 text-left"><span class="text-2xl">🍽️</span><p class="font-bold text-sm mt-2">메뉴 추천</p></button>
-      <button type="button" onclick="showPhrase('🎓','만나서 반가워요','Nice to meet you','Nice to meet you!')" class="bg-amber-50 hover:bg-amber-100 border border-amber-100 rounded-xl p-4 text-left"><span class="text-2xl">🎓</span><p class="font-bold text-sm mt-2">교류 인사</p></button>
-      <button type="button" onclick="showPhrase('🆘','도움이 필요해요','I need help','I need help, please.')" class="bg-rose-50 hover:bg-rose-100 border border-rose-100 rounded-xl p-4 text-left"><span class="text-2xl">🆘</span><p class="font-bold text-sm mt-2">도움 요청</p></button>
-      <button type="button" onclick="showPhrase('📍','호텔로 가고 싶어요','I\'d like to go to the hotel','I\'d like to go to my hotel.')" class="bg-rose-50 hover:bg-rose-100 border border-rose-100 rounded-xl p-4 text-left"><span class="text-2xl">📍</span><p class="font-bold text-sm mt-2">호텔 이동</p></button>
+    <p class="text-slate-500 text-sm mb-8">TAFE · 퀸즐랜드대 · 시드니대 교류에 맞춰 둔 문장입니다. 버튼을 누르면 영어 문장이 크게 나옵니다. 그대로 읽거나 화면을 보여 주세요.</p>
+
+    <div class="mb-8">
+      <h3 class="text-sm font-bold text-slate-600 mb-3 flex items-center gap-2"><i class="fa-solid fa-graduation-cap text-violet-600"></i> 캠퍼스 인사 · 자기소개</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <button type="button" onclick="showPhrase('🎓','강원대학교 학생입니다','아이엠 어 스튜던트 앳 강원 내셔널 유니버시티','I\'m a student at Kangwon National University in South Korea.','자기소개')" class="bg-violet-50 hover:bg-violet-100 border border-violet-100 rounded-xl p-4 text-left transition"><span class="text-2xl">🎓</span><p class="font-bold text-sm mt-2">소속 소개</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">Kangwon National University</p></button>
+        <button type="button" onclick="showPhrase('🤝','단기 학술 탐방으로 왔습니다','위어 히어 온 어 숏 아카데믹 스터디 투어','We\'re here on a short academic study tour.','방문 목적')" class="bg-violet-50 hover:bg-violet-100 border border-violet-100 rounded-xl p-4 text-left transition"><span class="text-2xl">🤝</span><p class="font-bold text-sm mt-2">방문 목적</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">academic study tour</p></button>
+        <button type="button" onclick="showPhrase('🏫','전공을 여쭤봐도 될까요','왓 두 유 스터디? 아이 메이저 인…','What do you study? I major in ____.','전공 대화')" class="bg-violet-50 hover:bg-violet-100 border border-violet-100 rounded-xl p-4 text-left transition"><span class="text-2xl">🏫</span><p class="font-bold text-sm mt-2">전공 묻기</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">빈칸에 전공을 넣어 말하세요</p></button>
+        <button type="button" onclick="showPhrase('🙏','캠퍼스를 안내해 주셔서 감사합니다','땡큐 포 테이킹 더 타임 투 쇼 어스 어라운드','Thank you for taking the time to show us around campus.','감사 인사')" class="bg-violet-50 hover:bg-violet-100 border border-violet-100 rounded-xl p-4 text-left transition"><span class="text-2xl">🙏</span><p class="font-bold text-sm mt-2">투어 감사</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">캠퍼스 투어를 마칠 때</p></button>
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <h3 class="text-sm font-bold text-slate-600 mb-3 flex items-center gap-2"><i class="fa-solid fa-comments text-sky-600"></i> 질문 · 토론</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <button type="button" onclick="showPhrase('💬','그 부분을 조금 더 설명해 주시겠어요','쿠드 유 엘라보레이트 온 댓 어 리틀 모어','Could you elaborate on that a little more?','질의')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left transition"><span class="text-2xl">💬</span><p class="font-bold text-sm mt-2">추가 설명</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">elaborate</p></button>
+        <button type="button" onclick="showPhrase('🔁','조금 천천히 다시 말씀해 주세요','쿠드 유 세이 댓 어게인 어 빗 모어 슬로울리','Could you say that again a bit more slowly, please?','되묻기')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left transition"><span class="text-2xl">🔁</span><p class="font-bold text-sm mt-2">다시 부탁</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">속도를 낮춰 달라고</p></button>
+        <button type="button" onclick="showPhrase('🌿','이곳 학생 생활은 어떤가요','왓 이즈 스튜던트 라이프 라이크 히어','What is student life like here?','캠퍼스 생활')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left transition"><span class="text-2xl">🌿</span><p class="font-bold text-sm mt-2">학생 생활</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">student life</p></button>
+        <button type="button" onclick="showPhrase('🌐','교환·인턴 기회가 궁금합니다','아이드 라이크 투 애스크 어바웃 익스체인지 오어 인턴십 오퍼튜니티즈','I\'d like to ask about exchange or internship opportunities.','진로 질문')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left transition"><span class="text-2xl">🌐</span><p class="font-bold text-sm mt-2">교류 기회</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">exchange · internship</p></button>
+        <button type="button" onclick="showPhrase('🇰🇷','한국 대학과 비교하면 어떤가요','하우 더즈 디스 컴페어 위드 유니버시티즈 인 코리아','How does this compare with universities in Korea?','비교 질문')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left transition"><span class="text-2xl">🇰🇷</span><p class="font-bold text-sm mt-2">한국과 비교</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">compare with Korea</p></button>
+        <button type="button" onclick="showPhrase('💡','흥미로운 포인트네요','댓츠 어 리얼리 인터레스팅 포인트','That\'s a really interesting point.','경청')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left transition"><span class="text-2xl">💡</span><p class="font-bold text-sm mt-2">공감 표현</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">설명을 들은 뒤</p></button>
+        <button type="button" onclick="showPhrase('📩','계속 연락하고 싶습니다','아이드 러브 투 스테이 인 터치. 메이 아이 커넥트 위드 유','I\'d love to stay in touch. May I connect with you?','네트워킹')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left transition"><span class="text-2xl">📩</span><p class="font-bold text-sm mt-2">연락 이어가기</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">stay in touch</p></button>
+        <button type="button" onclick="showPhrase('📷','함께 사진 찍어도 될까요','우드 유 마인드 이프 위 툭 어 포토 투게더','Would you mind if we took a photo together?','기념')" class="bg-sky-50 hover:bg-sky-100 border border-sky-100 rounded-xl p-4 text-left transition"><span class="text-2xl">📷</span><p class="font-bold text-sm mt-2">사진 양해</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">재학생과 함께</p></button>
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <h3 class="text-sm font-bold text-slate-600 mb-3 flex items-center gap-2"><i class="fa-solid fa-location-dot text-amber-600"></i> 캠퍼스 · 일정에서</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <button type="button" onclick="showPhrase('📚','도서관이 어디인지 알려 주시겠어요','쿠드 유 텔 미 웨어 더 라이브러리 이즈','Could you tell me where the library is?','캠퍼스')" class="bg-amber-50 hover:bg-amber-100 border border-amber-100 rounded-xl p-4 text-left transition"><span class="text-2xl">📚</span><p class="font-bold text-sm mt-2">도서관</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">library</p></button>
+        <button type="button" onclick="showPhrase('☕','근처 조용한 카페를 추천해 주세요','쿠드 유 레코멘드 어 콰이엇 카페 니어바이','Could you recommend a quiet café nearby?','자유시간')" class="bg-amber-50 hover:bg-amber-100 border border-amber-100 rounded-xl p-4 text-left transition"><span class="text-2xl">☕</span><p class="font-bold text-sm mt-2">카페 추천</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">quiet café</p></button>
+        <button type="button" onclick="showPhrase('⛴️','시티캣은 어디서 타나요','웨어 두 위 보드 더 시티캣','Where do we board the CityCat?','브리즈번')" class="bg-amber-50 hover:bg-amber-100 border border-amber-100 rounded-xl p-4 text-left transition"><span class="text-2xl">⛴️</span><p class="font-bold text-sm mt-2">시티캣</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">CityCat</p></button>
+        <button type="button" onclick="showPhrase('🎭','오페라하우스 투어 집합 장소를 찾고 있어요','위어 루킹 포 더 오페라 하우스 투어 미팅 포인트','We\'re looking for the Opera House tour meeting point.','시드니')" class="bg-amber-50 hover:bg-amber-100 border border-amber-100 rounded-xl p-4 text-left transition"><span class="text-2xl">🎭</span><p class="font-bold text-sm mt-2">오페라 집합</p><p class="text-[11px] text-slate-500 mt-1 leading-snug">meeting point</p></button>
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <h3 class="text-sm font-bold text-slate-600 mb-3 flex items-center gap-2"><i class="fa-solid fa-circle-exclamation text-rose-600"></i> 도움이 필요할 때</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <button type="button" onclick="showPhrase('🆘','도움이 필요합니다. 대학 단체와 함께 있습니다','아이 니드 헬프 플리즈. 아이엠 위드 어 유니버시티 그룹','I need help, please. I\'m with a university group.','긴급')" class="bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-4 text-left transition"><span class="text-2xl">🆘</span><p class="font-bold text-sm mt-2 text-rose-700">도움 요청</p><p class="text-[11px] text-rose-600/80 mt-1 leading-snug">university group</p></button>
+        <button type="button" onclick="showPhrase('🏥','가장 가까운 병원이 어디인가요','웨어 이즈 더 니어리스트 하스피틀','Where is the nearest hospital?','의료')" class="bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-4 text-left transition"><span class="text-2xl">🏥</span><p class="font-bold text-sm mt-2 text-rose-700">병원</p><p class="text-[11px] text-rose-600/80 mt-1 leading-snug">nearest hospital</p></button>
+        <button type="button" onclick="showPhrase('🤒','몸이 좋지 않아 진료가 필요합니다','아이엠 낫 필링 웰. 아이 니드 메디컬 헬프','I\'m not feeling well. I need medical help.','건강')" class="bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-4 text-left transition"><span class="text-2xl">🤒</span><p class="font-bold text-sm mt-2 text-rose-700">컨디션</p><p class="text-[11px] text-rose-600/80 mt-1 leading-snug">medical help</p></button>
+        <button type="button" onclick="showPhrase('📱','인솔자에게 연락해야 합니다','아이 니드 투 컨택트 마이 그룹 리더','I need to contact my group leader.','인솔')" class="bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl p-4 text-left transition"><span class="text-2xl">📱</span><p class="font-bold text-sm mt-2 text-rose-700">인솔자 연락</p><p class="text-[11px] text-rose-600/80 mt-1 leading-snug">group leader</p></button>
+      </div>
+    </div>
+
+    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+      <h4 class="font-bold text-slate-800 mb-3">캠퍼스에서 자주 듣는 표현</h4>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <div class="bg-white rounded-xl p-3 border border-slate-100"><p class="font-bold text-sky-700">How are you going?</p><p class="text-slate-600 mt-1 leading-snug">호주식 인사. 잘 지내?</p></div>
+        <div class="bg-white rounded-xl p-3 border border-slate-100"><p class="font-bold text-sky-700">No worries</p><p class="text-slate-600 mt-1 leading-snug">괜찮아, 천만에요</p></div>
+        <div class="bg-white rounded-xl p-3 border border-slate-100"><p class="font-bold text-sky-700">Faculty</p><p class="text-slate-600 mt-1 leading-snug">단과대학 · 학부</p></div>
+        <div class="bg-white rounded-xl p-3 border border-slate-100"><p class="font-bold text-sky-700">Tutorial</p><p class="text-slate-600 mt-1 leading-snug">소규모 수업 · 튜토리얼</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -635,11 +682,22 @@
 <section id="check" class="py-16 bg-slate-50 border-t border-slate-100">
   <div class="max-w-6xl mx-auto px-4">
     <p class="text-sky-600 font-bold text-sm tracking-widest mb-2">CHECKLIST</p>
-    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">출국 준비물 체크</h2>
-    <p class="text-slate-500 text-sm mb-6">항목을 체크하면 이 기기에 저장됩니다.</p>
-    <div id="checklist-container" class="grid md:grid-cols-2 gap-2 mb-4"></div>
-    <button type="button" onclick="resetChecklist()" class="text-xs text-slate-500 underline">체크리스트 초기화</button>
-    <textarea id="travel-memo" rows="3" placeholder="개인 메모 (이 기기에만 저장)" class="mt-4 w-full border border-slate-200 rounded-xl p-3 text-sm"></textarea>
+    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">출국 준비물 · 탐방 메모</h2>
+    <p class="text-slate-500 text-sm mb-8">체크와 메모는 이 기기에만 자동 저장됩니다.</p>
+    <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+      <div class="bg-sky-50 p-6 rounded-2xl border border-sky-100 shadow-sm">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="font-bold text-lg text-sky-900"><i class="fa-solid fa-check-double mr-2"></i>필수 준비물</h3>
+          <button type="button" onclick="resetChecklist()" class="text-xs text-slate-500 underline bg-white px-2 py-1 rounded border border-slate-200">초기화</button>
+        </div>
+        <div id="checklist-container" class="space-y-2"></div>
+      </div>
+      <div class="bg-yellow-50 p-6 rounded-2xl border border-yellow-100 shadow-sm flex flex-col">
+        <h3 class="font-bold text-lg mb-1 text-yellow-800"><i class="fa-solid fa-pen-clip mr-2"></i>탐방 메모장</h3>
+        <p class="text-xs text-yellow-800/80 mb-4 leading-relaxed">묻고 싶은 점, 캠퍼스에서 남기고 싶은 장면, 교류한 연락처를 적어 두세요.</p>
+        <textarea id="travel-memo" class="flex-1 w-full min-h-[16rem] bg-white p-4 rounded-xl border border-yellow-200 text-sm text-slate-700 resize-none focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="질문하고 싶은 점, 인상 깊었던 장면, 교류 연락처 등을 적어 보세요."></textarea>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -698,9 +756,9 @@
       </div>
     </div>
     <div class="flex flex-wrap items-center justify-between gap-4 text-sm">
-      <p>[System Powered by QB GLOBAL] 본 디지털 가이드북은 <strong class="text-white">강원대학교</strong> 프로그램을 위해 <strong class="text-white">큐비글로벌(QB Global)</strong>이 제작하였습니다.</p>
-      <a href="https://tourmaker.kr/?utm_source=smart_guidebook&utm_medium=footer&utm_campaign=270107_Aus" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sky-300 hover:text-white">
-        <img src="assets/images/tourmaker-logo.png" alt="Tourmaker" class="h-5"> 공식 홈페이지
+      <p class="leading-relaxed max-w-3xl">본 스마트 가이드북은 <strong class="text-white">강원대학교</strong>의 기획과 <strong class="text-white">큐비글로벌</strong>·<a href="https://tourmaker.kr/?utm_source=smart_guidebook&utm_medium=footer&utm_campaign=270107_Aus" target="_blank" rel="noopener" class="text-sky-300 hover:text-white font-bold">투어메이커</a>의 트래블 테크 기술 제휴로 제작되었습니다.</p>
+      <a href="https://tourmaker.kr/?utm_source=smart_guidebook&utm_medium=footer&utm_campaign=270107_Aus" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sky-300 hover:text-white shrink-0">
+        <img src="assets/images/tourmaker-logo.png" alt="Tourmaker" class="h-5"> 투어메이커
       </a>
     </div>
     <p class="text-xs text-slate-500 mt-4">&copy; 2027 QB Global · Tourmaker. All Rights Reserved.</p>
@@ -736,13 +794,15 @@
   </div>
 </div>
 
-<div id="phrase-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center bg-black/60 px-4 no-print" onclick="closePhrase()" style="opacity:0;transition:opacity .3s">
-  <div class="bg-white rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl" onclick="event.stopPropagation()">
-    <div id="modal-emoji" class="text-5xl mb-3"></div>
-    <p id="modal-korean" class="text-xl font-bold text-slate-800 mb-2"></p>
-    <p id="modal-pronounce" class="text-sm text-sky-600 font-bold mb-1"></p>
-    <p id="modal-local" class="text-lg text-slate-700 font-medium"></p>
-    <button type="button" onclick="closePhrase()" class="mt-6 text-sm text-slate-400">닫기</button>
+<div id="phrase-modal" class="fixed inset-0 z-[110] hidden flex-col items-center justify-center bg-slate-950/95 px-5 no-print" onclick="closePhrase()" style="opacity:0;transition:opacity .3s">
+  <button type="button" onclick="closePhrase()" class="absolute top-5 right-5 text-white/70 hover:text-white text-4xl leading-none" aria-label="닫기">&times;</button>
+  <div class="text-white text-center w-full max-w-2xl" onclick="event.stopPropagation()">
+    <div id="modal-emoji" class="text-6xl mb-4"></div>
+    <div id="modal-note" class="text-sm bg-sky-500/20 text-sky-100 px-4 py-1.5 rounded-full border border-sky-400/40 mb-5 inline-block"></div>
+    <p id="modal-local" class="text-2xl md:text-4xl font-black leading-tight mb-5"></p>
+    <p id="modal-pronounce" class="text-base md:text-lg text-amber-200 font-medium leading-relaxed mb-4"></p>
+    <p id="modal-korean" class="text-lg text-slate-300 font-bold mb-8"></p>
+    <p class="text-sm inline-block bg-white/10 text-white px-5 py-3 rounded-full border border-white/20 font-bold">이 문장을 읽거나, 화면을 보여 주세요</p>
   </div>
 </div>
 
@@ -864,19 +924,25 @@ async function fetchWidgets(){
   fillWeather('weather-bne', -27.4698, 153.0251, 'Australia/Brisbane');
   fillWeather('weather-syd', -33.8688, 151.2093, 'Australia/Sydney');
 }
-function showPhrase(emoji, kr, pronounce, local){
+function showPhrase(emoji, kr, pronounce, local, note){
   document.getElementById('modal-emoji').innerText=emoji;
   document.getElementById('modal-korean').innerText=kr;
   document.getElementById('modal-pronounce').innerText=pronounce;
   document.getElementById('modal-local').innerText=local;
+  const noteEl=document.getElementById('modal-note');
+  if(noteEl){
+    noteEl.textContent=note||'';
+    noteEl.classList.toggle('hidden', !note);
+  }
   const modal=document.getElementById('phrase-modal');
   modal.classList.remove('hidden');
+  modal.classList.add('flex');
   setTimeout(()=>{ modal.style.opacity='1'; },10);
 }
 function closePhrase(){
   const modal=document.getElementById('phrase-modal');
   modal.style.opacity='0';
-  setTimeout(()=>modal.classList.add('hidden'),300);
+  setTimeout(()=>{ modal.classList.add('hidden'); modal.classList.remove('flex'); },300);
 }
 const CHECK_KEY='kwu_270107_aus_chk_v1';
 const CHECK_ITEMS=[
