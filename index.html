@@ -80,178 +80,171 @@
         .schedule-thumb { width: 100%; max-width: 14rem; aspect-ratio: 4/3; object-fit: cover; border-radius: .75rem; border: 1px solid #e2e8f0; box-shadow: 0 4px 12px rgba(15,23,42,.08); }
         @media screen { #print-area { display: none !important; } }
         @media print {
-            @page { size: A4 portrait; margin: 10mm 10mm; }
+            @page { size: A4 portrait; margin: 9mm 9mm; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             html, body { background: #fff !important; color: #1e293b !important; }
-            header, footer, .print\:hidden, .no-print, #event-day-bar, #toast, #phrase-modal, #tm-inquiry-modal { display: none !important; }
-            main, body { padding: 0 !important; margin: 0 !important; }
+            /* 웹 본문은 숨기고 인쇄용 2장만 출력 */
+            header, footer, main, section, .print\:hidden, .no-print, #event-day-bar, #toast, #phrase-modal, #tm-inquiry-modal { display: none !important; }
+            body { padding: 0 !important; margin: 0 !important; }
             #print-area { display: block !important; width: 100%; box-sizing: border-box; }
-            .print-page { display: flex; flex-direction: column; width: 100%; min-height: 277mm; box-sizing: border-box; }
+            .print-page { display: flex; flex-direction: column; width: 100%; min-height: 0; box-sizing: border-box; }
             .print-page-break { page-break-after: always; break-after: page; }
-            .std-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #0284c7; padding-bottom: 8px; margin-bottom: 10px; }
-            .std-header img { height: 36px; object-fit: contain; }
-            .std-doc-info { text-align: right; font-size: 11.5px; color: #475569; font-weight: 600; }
-            .std-title { text-align: center; margin-bottom: 8px; }
-            .std-title h1 { font-size: 18px; font-weight: 700; color: #0f172a; margin: 0; font-family: 'Nanum Myeongjo', serif; }
-            .std-overview { background: #f8fafc !important; border: 1px solid #94a3b8 !important; border-radius: 6px; padding: 8px 14px; margin-bottom: 8px; font-size: 11.5px; }
+            .print-page-2 { page-break-before: always; break-before: page; }
+            .std-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #0284c7; padding-bottom: 6px; margin-bottom: 7px; }
+            .std-header img { height: 30px; object-fit: contain; }
+            .std-doc-info { text-align: right; font-size: 10.5px; color: #475569; font-weight: 600; }
+            .std-title { text-align: center; margin-bottom: 5px; }
+            .std-title h1 { font-size: 16px; font-weight: 700; color: #0f172a; margin: 0; font-family: 'Nanum Myeongjo', serif; line-height: 1.3; }
+            .std-overview { background: #f8fafc !important; border: 1px solid #94a3b8 !important; border-radius: 6px; padding: 6px 10px; margin-bottom: 6px; font-size: 10.5px; }
             .std-overview .label { font-weight: 700; color: #0284c7; }
-            .std-table { width: 100%; border-collapse: collapse; font-size: 10.5px; table-layout: fixed; border: 2px solid #1e293b !important; margin-bottom: 8px; }
-            .std-table th { border: 1px solid #1e293b !important; background: #f8fafc !important; font-weight: 700; text-align: center; padding: 6px !important; }
-            .std-table td { border: 1px solid #1e293b !important; padding: 6px 8px !important; vertical-align: top; word-break: keep-all; line-height: 1.4; }
+            .std-table { width: 100%; border-collapse: collapse; font-size: 9.5px; table-layout: fixed; border: 2px solid #1e293b !important; margin-bottom: 5px; }
+            .std-table th { border: 1px solid #1e293b !important; background: #f8fafc !important; font-weight: 700; text-align: center; padding: 4px 5px !important; font-size: 10px; }
+            .std-table td { border: 1px solid #1e293b !important; padding: 4px 6px !important; vertical-align: top; word-break: keep-all; line-height: 1.32; }
             .std-table tbody tr { page-break-inside: avoid; break-inside: avoid; }
             .col-date { width: 11%; text-align: center; font-weight: 700; background: #f8fafc !important; }
             .col-desc { width: 68%; }
             .col-meal { width: 21%; }
-            .time-tag { color: #0284c7; font-weight: 700; margin-right: 4px; }
-            .desc-list { list-style: none; margin: 3px 0 0; padding-left: 4px; }
-            .desc-list li { position: relative; padding-left: 12px; margin-bottom: 3px; }
-            .desc-list li::before { content: '■'; font-size: 7px; position: absolute; left: 0; top: 3px; color: #0284c7; }
-            .hotel-info { font-size: 11px; font-weight: 700; }
-            .meal-simple { font-size: 11px; margin-bottom: 3px; }
-            .meal-simple strong { color: #0284c7; margin-right: 3px; }
+            .time-tag { color: #0284c7; font-weight: 700; margin-right: 3px; }
+            .desc-list { list-style: none; margin: 2px 0 0; padding-left: 3px; }
+            .desc-list li { position: relative; padding-left: 11px; margin-bottom: 1.5px; }
+            .desc-list li::before { content: '■'; font-size: 6px; position: absolute; left: 0; top: 3px; color: #0284c7; }
+            .hotel-info { font-size: 10px; font-weight: 700; margin-bottom: 2px; }
+            .meal-simple { font-size: 10px; margin-bottom: 1px; }
+            .meal-simple strong { color: #0284c7; margin-right: 2px; }
             .print-section-title { font-size: 13px; font-weight: 800; color: #0284c7; margin: 0 0 8px; border-left: 4px solid #0284c7; padding-left: 8px; }
-            .print-check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; margin: 2px 0 10px; }
-            .print-check-item { display: flex; align-items: center; gap: 8px; font-size: 11px; border: 1px solid #94a3b8; border-radius: 6px; padding: 7px 10px; }
-            .print-check-box { width: 13px; height: 13px; border: 1.5px solid #0284c7; border-radius: 3px; flex-shrink: 0; }
-            .print-seat-box { border: 1px solid #1e293b; border-radius: 8px; padding: 8px 11px; margin-bottom: 10px; background: #f8fafc !important; }
+            .print-check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 12px; margin: 2px 0 12px; }
+            .print-check-item { display: flex; align-items: center; gap: 8px; font-size: 12px; border: 1px solid #94a3b8; border-radius: 6px; padding: 9px 12px; background: #fff !important; word-break: keep-all; }
+            .print-check-box { width: 14px; height: 14px; border: 1.5px solid #0284c7; border-radius: 3px; flex-shrink: 0; }
+            .print-seat-box { border: 1px solid #1e293b; border-radius: 8px; padding: 9px 12px; margin-bottom: 12px; background: #f8fafc !important; page-break-inside: avoid; }
             .print-seat-box h3 { font-size: 12px; font-weight: 800; color: #0284c7; margin: 0 0 5px; }
-            .print-seat-box li { position: relative; padding-left: 11px; font-size: 10.5px; line-height: 1.4; margin-bottom: 3px; list-style: none; }
+            .print-seat-box ul { list-style: none; margin: 0; padding: 0; }
+            .print-seat-box li { position: relative; padding-left: 11px; font-size: 11px; line-height: 1.4; margin-bottom: 3px; }
             .print-seat-box li::before { content: '■'; font-size: 7px; position: absolute; left: 0; top: 4px; color: #0284c7; }
-            .print-qr-panel { display: flex; gap: 14px; align-items: center; border: 2px solid #0284c7; border-radius: 10px; padding: 12px 16px; background: #f8fafc !important; margin-top: auto; }
-            .print-qr-panel img { width: 108px; height: 108px; }
-            .print-qr-url { font-size: 11px; font-weight: bold; }
-            .footer-box { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #e2e8f0; font-size: 11px; }
+            .print-qr-panel { display: flex; gap: 14px; align-items: center; border: 2px solid #0284c7; border-radius: 10px; padding: 14px 16px; background: #f8fafc !important; margin-top: auto; page-break-inside: avoid; }
+            .print-qr-panel img { width: 112px; height: 112px; flex-shrink: 0; border: 1px solid #e2e8f0; background: #fff; }
+            .print-qr-panel h3 { font-size: 15px; font-weight: bold; color: #0284c7; margin: 0 0 4px; }
+            .print-qr-panel p { font-size: 12px; line-height: 1.45; color: #334155; margin: 0 0 4px; }
+            .print-qr-url { font-size: 11.5px; font-weight: bold; color: #0f172a; word-break: break-all; }
+            .footer-box { margin-top: auto; padding-top: 8px; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #e2e8f0; font-size: 10.5px; }
             .manager-info { border-left: 3px solid #0284c7; padding-left: 10px; font-weight: 700; }
-            #map-status { left: auto !important; right: 12px !important; top: 12px !important; max-width: min(52%, 280px); text-align: right; }
+            .print-remarks { font-size: 9.5px; color: #64748b; text-align: right; margin: 2px 0 4px; }
+            .print-sub { text-align: center; font-size: 10.5px; margin: 0 0 6px; color: #334155; }
         }
     </style>
 </head>
 <body class="bg-slate-50">
 
-<!-- PRINT PAGE 1 -->
+<!-- PRINT: 1장 일정표 + 2장 준비물·QR -->
 <div id="print-area">
   <div class="print-page print-page-break">
     <div class="std-header">
       <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPMO83G1xHJIu1jKvn1GjQn_C3z42tM-LYvYPKcGIaYkarv47vw5TlYsJFjZxRLVm4e0yQutvIHXQ_VBUHdlu2p25QP7z1NAK2XsEUNUpxycDMpLzi7TJ390gXDpD5orf1OBAXwbwnPrasas06glRIv9rpqwN1YEQvy2fPbKRU4Ogpbo8SyH7NEnt-1FY=w320-h101" alt="QB Global">
-      <div class="std-doc-info">안내 초안 · 2026.10.27</div>
+      <div class="std-doc-info">안내 초안 · 1/2</div>
     </div>
     <div class="std-title"><h1>강원대학교 호주(브리즈번·시드니) 방문 일정</h1></div>
-    <p style="text-align:center;font-size:11px;margin:0 0 8px;">진행: 큐비글로벌(QB Global)</p>
+    <p class="print-sub">진행: 큐비글로벌(QB Global)</p>
     <div class="std-overview">
-      <div><span class="label">행사기간</span> 2027. 01. 07(목) ~ 01. 13(수) [6박 7일]<span style="margin:0 8px;color:#94a3b8;">|</span><span class="label">이용항공</span> 젯스타(JQ) · 인천↔브리즈번 / 브리즈번→시드니 / 시드니→인천</div>
+      <div><span class="label">행사기간</span> 2027.01.07(목)~01.13(수) [6박 7일]<span style="margin:0 8px;color:#94a3b8;">|</span><span class="label">항공</span> 젯스타 JQ54 / JQ829 / JQ47</div>
     </div>
     <table class="std-table">
       <thead><tr><th class="col-date">일차</th><th class="col-desc">상세 일정</th><th class="col-meal">숙소·식사</th></tr></thead>
       <tbody>
         <tr>
-          <td class="col-date">1일차<br><span style="font-size:10px;color:#64748b;">01.07(목)</span><br><span style="color:#0284c7;font-size:11px;">인천</span></td>
+          <td class="col-date">1일차<br><span style="font-size:9px;color:#64748b;">01.07(목)</span><br><span style="color:#0284c7;font-size:10px;">인천</span></td>
           <td class="col-desc">
-            <div><span class="time-tag">18:30</span>인천공항 집합 및 탑승수속</div>
-            <div><span class="time-tag">21:30</span>젯스타 <strong>JQ54</strong> 인천 21:30 → 브리즈번 08:00(+1) · 약 10시간 5분</div>
+            <div><span class="time-tag">18:30</span>인천공항 집합·탑승수속</div>
+            <div><span class="time-tag">21:30</span>젯스타 <strong>JQ54</strong> 인천 21:30 → BNE 08:00(+1) · 약 10시간 5분</div>
           </td>
-          <td class="col-meal"><div class="hotel-info">기내</div><div class="meal-simple"><strong>조</strong> —</div><div class="meal-simple"><strong>중</strong> —</div><div class="meal-simple"><strong>석</strong> 기내식</div></td>
+          <td class="col-meal"><div class="hotel-info">기내</div><div class="meal-simple"><strong>조</strong>—</div><div class="meal-simple"><strong>중</strong>—</div><div class="meal-simple"><strong>석</strong>기내식</div></td>
         </tr>
         <tr>
-          <td class="col-date">2일차<br><span style="font-size:10px;color:#64748b;">01.08(금)</span><br><span style="color:#0284c7;font-size:11px;">브리즈번</span></td>
+          <td class="col-date">2일차<br><span style="font-size:9px;color:#64748b;">01.08(금)</span><br><span style="color:#0284c7;font-size:10px;">브리즈번</span></td>
           <td class="col-desc">
             <ul class="desc-list">
               <li><strong>08:00</strong> 브리즈번공항 도착 · 입국</li>
-              <li><strong>10:30</strong> 마운트 쿠타(Mount Coot-tha) 전망대</li>
-              <li><strong>11:00</strong> 전망과 함께하는 호주 첫 식사</li>
-              <li><strong>12:30</strong> Southbank 문화지구 탐방</li>
-              <li><strong>13:00</strong> 호주 국립 직업교육 TAFE 캠퍼스 투어</li>
-              <li><strong>15:00</strong> 숙소 체크인 · 휴식</li>
-              <li><strong>17:00</strong> 브리즈번 시내 · 석식 후 호텔</li>
+              <li><strong>10:30</strong> 마운트 쿠타 전망대 → <strong>11:00</strong> 호주 첫 식사</li>
+              <li><strong>12:30</strong> Southbank 문화지구 → <strong>13:00</strong> TAFE 캠퍼스 투어</li>
+              <li><strong>15:00</strong> 호텔 체크인 · <strong>17:00</strong> 시내·석식 후 호텔</li>
             </ul>
           </td>
-          <td class="col-meal"><div class="hotel-info">브리즈번 호텔</div><div class="meal-simple"><strong>조</strong> 기내식</div><div class="meal-simple"><strong>중</strong> 현지식</div><div class="meal-simple"><strong>석</strong> 현지식/한식</div></td>
+          <td class="col-meal"><div class="hotel-info">브리즈번 호텔</div><div class="meal-simple"><strong>조</strong>기내</div><div class="meal-simple"><strong>중</strong>현지</div><div class="meal-simple"><strong>석</strong>현지/한식</div></td>
         </tr>
         <tr>
-          <td class="col-date">3일차<br><span style="font-size:10px;color:#64748b;">01.09(토)</span><br><span style="color:#0284c7;font-size:11px;">골드코스트</span></td>
+          <td class="col-date">3일차<br><span style="font-size:9px;color:#64748b;">01.09(토)</span><br><span style="color:#0284c7;font-size:10px;">골드코스트</span></td>
+          <td class="col-desc">
+            <ul class="desc-list">
+              <li><strong>08:00</strong> 호텔 조식 → <strong>10:00</strong> 골드코스트 이동</li>
+              <li><strong>11:00</strong> Q1 스카이포인트 → <strong>13:00</strong> Surfers Paradise 해변·자유중식</li>
+              <li><strong>16:00</strong> 해변 마켓 → <strong>19:00</strong> 브리즈번 호텔 복귀</li>
+            </ul>
+          </td>
+          <td class="col-meal"><div class="hotel-info">브리즈번 호텔</div><div class="meal-simple"><strong>조</strong>호텔</div><div class="meal-simple"><strong>중</strong>자유</div><div class="meal-simple"><strong>석</strong>현지/한식</div></td>
+        </tr>
+        <tr>
+          <td class="col-date">4일차<br><span style="font-size:9px;color:#64748b;">01.10(일)</span><br><span style="color:#0284c7;font-size:10px;">브리즈번</span></td>
           <td class="col-desc">
             <ul class="desc-list">
               <li><strong>08:00</strong> 호텔 조식</li>
-              <li><strong>10:00</strong> 골드코스트 이동</li>
-              <li><strong>11:00</strong> Q1 스카이포인트 전망대</li>
-              <li><strong>13:00</strong> Surfers Paradise 해변 · 자유 중식</li>
-              <li><strong>16:00</strong> Surfers Paradise 해변 마켓</li>
-              <li><strong>19:00</strong> 브리즈번 호텔 복귀</li>
+              <li><strong>10:00</strong> UQ 한인재학생 캠퍼스투어 · CityCat · 시청·전쟁기념광장 씨티투어</li>
+              <li><strong>15:00</strong> 시내 자유시간 → <strong>20:00</strong> 호텔 복귀</li>
             </ul>
           </td>
-          <td class="col-meal"><div class="hotel-info">브리즈번 호텔</div><div class="meal-simple"><strong>조</strong> 호텔식</div><div class="meal-simple"><strong>중</strong> 자유식</div><div class="meal-simple"><strong>석</strong> 현지식/한식</div></td>
+          <td class="col-meal"><div class="hotel-info">브리즈번 호텔</div><div class="meal-simple"><strong>조</strong>호텔</div><div class="meal-simple"><strong>중</strong>현지</div><div class="meal-simple"><strong>석</strong>현지/한식</div></td>
         </tr>
         <tr>
-          <td class="col-date">4일차<br><span style="font-size:10px;color:#64748b;">01.10(일)</span><br><span style="color:#0284c7;font-size:11px;">브리즈번</span></td>
+          <td class="col-date">5일차<br><span style="font-size:9px;color:#64748b;">01.11(월)</span><br><span style="color:#0284c7;font-size:10px;">시드니</span></td>
           <td class="col-desc">
             <ul class="desc-list">
-              <li><strong>08:00</strong> 호텔 조식</li>
-              <li><strong>10:00</strong> UQ 한인 재학생 캠퍼스 투어 · CityCat · 시청·전쟁기념광장 씨티투어</li>
-              <li><strong>15:00</strong> 브리즈번 시내 자유시간</li>
-              <li><strong>20:00</strong> 호텔 복귀 · 휴식</li>
+              <li><strong>06:30</strong> 조식·체크아웃 → <strong>09:05</strong> JQ829 BNE→SYD 11:40</li>
+              <li><strong>13:00</strong> 오페라·하버브릿지 / 오페라 내부투어(약 30분) / 시드니대 투어·간담회</li>
+              <li><strong>17:00</strong> 디너 크루즈(선상 3코스) → <strong>20:00</strong> 호텔</li>
             </ul>
           </td>
-          <td class="col-meal"><div class="hotel-info">브리즈번 호텔</div><div class="meal-simple"><strong>조</strong> 호텔식</div><div class="meal-simple"><strong>중</strong> 현지식</div><div class="meal-simple"><strong>석</strong> 현지식/한식</div></td>
+          <td class="col-meal"><div class="hotel-info">시드니 호텔</div><div class="meal-simple"><strong>조</strong>호텔</div><div class="meal-simple"><strong>중</strong>현지</div><div class="meal-simple"><strong>석</strong>선상식</div></td>
         </tr>
         <tr>
-          <td class="col-date">5일차<br><span style="font-size:10px;color:#64748b;">01.11(월)</span><br><span style="color:#0284c7;font-size:11px;">시드니</span></td>
+          <td class="col-date">6일차<br><span style="font-size:9px;color:#64748b;">01.12(화)</span><br><span style="color:#0284c7;font-size:10px;">블루마운틴</span></td>
           <td class="col-desc">
             <ul class="desc-list">
-              <li><strong>06:30</strong> 조식 · 체크아웃 → <strong>07:30</strong> BNE 공항</li>
-              <li><strong>09:05</strong> 젯스타 <strong>JQ829</strong> BNE→SYD 11:40 (약 1시간 35분)</li>
-              <li><strong>13:00</strong> 오페라하우스·하버브릿지 외관 / 오페라 내부투어(한국어·약 30분) / 시드니대 재학생 투어·간담회</li>
-              <li><strong>17:00</strong> 시드니 디너 크루즈(선상 3코스)</li>
-              <li><strong>20:00</strong> 호텔 복귀</li>
+              <li><strong>07:00</strong> 조식 → <strong>08:00</strong> 블루마운틴 출발</li>
+              <li><strong>10:00</strong> Scenic World → <strong>13:00</strong> Eco Point(세자매봉)</li>
+              <li><strong>17:00</strong> 시드니 동물원 → <strong>20:00</strong> 인터내셔널 뷔페 → <strong>21:00</strong> 호텔</li>
             </ul>
           </td>
-          <td class="col-meal"><div class="hotel-info">시드니 호텔</div><div class="meal-simple"><strong>조</strong> 호텔식</div><div class="meal-simple"><strong>중</strong> 현지식</div><div class="meal-simple"><strong>석</strong> 선상식</div></td>
+          <td class="col-meal"><div class="hotel-info">시드니 호텔</div><div class="meal-simple"><strong>조</strong>호텔</div><div class="meal-simple"><strong>중</strong>현지</div><div class="meal-simple"><strong>석</strong>뷔페</div></td>
         </tr>
         <tr>
-          <td class="col-date">6일차<br><span style="font-size:10px;color:#64748b;">01.12(화)</span><br><span style="color:#0284c7;font-size:11px;">블루마운틴</span></td>
+          <td class="col-date">7일차<br><span style="font-size:9px;color:#64748b;">01.13(수)</span><br><span style="color:#0284c7;font-size:10px;">귀국</span></td>
           <td class="col-desc">
             <ul class="desc-list">
-              <li><strong>07:00</strong> 호텔 조식 → <strong>08:00</strong> 블루마운틴 투어 출발</li>
-              <li><strong>10:00</strong> Scenic World (시닉 월드) 관람</li>
-              <li><strong>13:00</strong> Eco Point 전망대 · 세자매봉·자미슨밸리</li>
-              <li><strong>17:00</strong> 시드니 동물원 · 호주 생태 체험</li>
-              <li><strong>20:00</strong> 인터내셔널 뷔페 → <strong>21:00</strong> 호텔</li>
+              <li><strong>07:00</strong> 조식·체크아웃 → <strong>09:00</strong> 시드니공항 수속</li>
+              <li><strong>11:40</strong> 젯스타 <strong>JQ47</strong> SYD → ICN 20:15 · 약 10시간 35분</li>
             </ul>
           </td>
-          <td class="col-meal"><div class="hotel-info">시드니 호텔</div><div class="meal-simple"><strong>조</strong> 호텔식</div><div class="meal-simple"><strong>중</strong> 현지식</div><div class="meal-simple"><strong>석</strong> 뷔페식</div></td>
-        </tr>
-        <tr>
-          <td class="col-date">7일차<br><span style="font-size:10px;color:#64748b;">01.13(수)</span><br><span style="color:#0284c7;font-size:11px;">귀국</span></td>
-          <td class="col-desc">
-            <ul class="desc-list">
-              <li><strong>07:00</strong> 조식 · 체크아웃</li>
-              <li><strong>09:00</strong> 시드니공항 도착 · 탑승수속</li>
-              <li><strong>11:40</strong> 젯스타 <strong>JQ47</strong> 시드니 11:40 → 인천 20:15 · 약 10시간 35분</li>
-              <li><strong>20:15</strong> 인천공항 도착</li>
-            </ul>
-          </td>
-          <td class="col-meal"><div class="hotel-info">당일 귀국</div><div class="meal-simple"><strong>조</strong> 호텔식</div><div class="meal-simple"><strong>중</strong> 기내식</div><div class="meal-simple"><strong>석</strong> 기내식</div></td>
+          <td class="col-meal"><div class="hotel-info">당일 귀국</div><div class="meal-simple"><strong>조</strong>호텔</div><div class="meal-simple"><strong>중</strong>기내</div><div class="meal-simple"><strong>석</strong>기내</div></td>
         </tr>
       </tbody>
     </table>
-    <p style="font-size:10px;color:#64748b;text-align:right;">※ 상기 일정은 항공 및 현지 사정에 의하여 다소 변경될 수 있습니다.</p>
+    <p class="print-remarks">※ 상기 일정은 항공 및 현지 사정에 의하여 다소 변경될 수 있습니다.</p>
     <div class="footer-box">
       <span>[System Powered by QB GLOBAL]</span>
       <div class="manager-info">비상연락: 김회란 010-3453-0584 · 최민태 010-7369-5230</div>
     </div>
   </div>
 
-  <!-- PRINT PAGE 2 -->
-  <div class="print-page">
+  <div class="print-page print-page-2">
     <div class="std-header">
       <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPMO83G1xHJIu1jKvn1GjQn_C3z42tM-LYvYPKcGIaYkarv47vw5TlYsJFjZxRLVm4e0yQutvIHXQ_VBUHdlu2p25QP7z1NAK2XsEUNUpxycDMpLzi7TJ390gXDpD5orf1OBAXwbwnPrasas06glRIv9rpqwN1YEQvy2fPbKRU4Ogpbo8SyH7NEnt-1FY=w320-h101" alt="QB Global">
-      <div class="std-doc-info">준비물 · 체크인 요약</div>
+      <div class="std-doc-info">준비물 · QR · 2/2</div>
     </div>
-    <h2 class="print-section-title">해외여행 준비물</h2>
+    <div class="std-title"><h1>해외여행 준비물 · 스마트 가이드북</h1></div>
+    <h2 class="print-section-title">출국 전 확인</h2>
     <div class="print-check-grid">
       <div class="print-check-item"><span class="print-check-box"></span><span>여권 (잔여 유효기간 6개월+)</span></div>
       <div class="print-check-item"><span class="print-check-box"></span><span>호주 ETA(전자여행허가) 승인 확인</span></div>
       <div class="print-check-item"><span class="print-check-box"></span><span>E-티켓 · 여행자보험</span></div>
       <div class="print-check-item"><span class="print-check-box"></span><span>해외 사용 가능 카드 · 소액 현금</span></div>
-      <div class="print-check-item"><span class="print-check-box"></span><span>여름철 겉옷·모자·선크림 · 편한 신발</span></div>
+      <div class="print-check-item"><span class="print-check-box"></span><span>여름철 옷·모자·선크림 · 편한 신발</span></div>
       <div class="print-check-item"><span class="print-check-box"></span><span>상비약 · 세면도구 · 우산</span></div>
       <div class="print-check-item"><span class="print-check-box"></span><span>충전기·보조배터리(기내 휴대·절연)</span></div>
       <div class="print-check-item"><span class="print-check-box"></span><span>호주 콘센트 어댑터(Type I)</span></div>
@@ -259,19 +252,18 @@
       <div class="print-check-item"><span class="print-check-box"></span><span>여권 사본 · 비상연락처 메모</span></div>
     </div>
     <div class="print-seat-box">
-      <h3>✈ 젯스타(JQ) 온라인 체크인 &amp; 보조배터리 기내반입 안내</h3>
-      <ul style="margin:0;padding:0;">
-        <li><strong>온라인 체크인</strong> : 항공권 발권(E-티켓 발행) 완료 후, 국제선·국내선 모두 출발 약 48시간 전 오픈(항공사 기준). 젯스타 앱·홈페이지에서 진행을 권장합니다.</li>
-        <li><strong>좌석</strong> : 운임에 따라 사전좌석이 유료일 수 있습니다. 온라인 체크인 시 배정된 좌석을 확인하고, 공항 카운터에서 일행 여권을 함께 제시하면 인접 좌석 조정을 요청할 수 있습니다.</li>
-        <li><strong>보조배터리·전자담배</strong> : 위탁 금지 · 기내 사용·충전 금지 · 선반 보관 불가 · 단락 방지(절연·개별 보관) · 1인 최대 2개 · 160Wh 초과 불가</li>
-        <li>항공사 정책·당일 공항 사정에 따라 변동될 수 있습니다.</li>
+      <h3>✈ 젯스타(JQ) 온라인 체크인 · 보조배터리 안내</h3>
+      <ul>
+        <li><strong>온라인 체크인</strong> : 발권(E-티켓) 완료 후 출발 약 48시간 전 오픈 · 젯스타 앱·홈페이지에서 진행 권장</li>
+        <li><strong>좌석</strong> : 온라인 체크인 배정 좌석 확인 · 필요 시 공항에서 일행 여권 함께 제시해 인접 좌석 요청</li>
+        <li><strong>보조배터리·전자담배</strong> : 위탁 금지 · 기내 사용·충전 금지 · 선반 보관 불가 · 단락 방지 · 1인 최대 2개 · 160Wh 초과 불가</li>
       </ul>
     </div>
     <div class="print-qr-panel">
-      <img src="assets/images/guidebook-qr.png" alt="스마트 가이드북 QR" width="128" height="128">
+      <img src="assets/images/guidebook-qr.png" alt="스마트 가이드북 QR코드" width="128" height="128">
       <div>
-        <h3 style="margin:0 0 4px;color:#0284c7;font-size:14px;">스마트 가이드북</h3>
-        <p style="margin:0 0 4px;font-size:12px;">스마트폰으로 스캔하면 스마트 가이드북을 열 수 있습니다.</p>
+        <h3>스마트 가이드북 QR</h3>
+        <p>스마트폰으로 스캔하면 스마트 가이드북을 열 수 있습니다.</p>
         <p class="print-qr-url">https://indadady.github.io/270107_Aus/</p>
       </div>
     </div>
