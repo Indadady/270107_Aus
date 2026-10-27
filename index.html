@@ -424,18 +424,19 @@
 
 <section id="map-section" class="py-16 bg-white border-t border-slate-100">
   <div class="max-w-6xl mx-auto px-4">
-    <p class="text-sky-600 font-bold text-sm tracking-widest mb-2">ROUTE MAP</p>
+    <p class="text-cyan-600 font-bold text-sm tracking-widest mb-2">ROUTE MAP</p>
     <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">한눈에 보는 탐방 동선</h2>
-    <p id="map-hint" class="text-slate-500 text-sm mb-4">일자별 버튼을 누르면 실제 도로·항공 경로가 순서대로 재생됩니다.</p>
+    <p class="text-slate-500 text-sm mb-3">일자별 버튼을 누르면 실제 도로(OSRM) · 항공 경로가 순차 재생됩니다.</p>
+    <p id="map-hint" class="text-slate-600 text-sm mb-4 font-medium">전체 여정 동선을 준비 중입니다.</p>
     <div class="flex gap-2 overflow-x-auto no-scrollbar mb-4 pb-1">
-      <button type="button" id="btn-map-all" onclick="filterMap('all')" class="map-btn shrink-0 px-3 py-2 rounded-xl text-xs font-bold border bg-sky-600 text-white border-sky-600">전체</button>
-      <button type="button" id="btn-map-day1" onclick="filterMap('day1')" class="map-btn shrink-0 px-3 py-2 rounded-xl text-xs font-bold border bg-white text-slate-600 border-slate-200">1일차</button>
-      <button type="button" id="btn-map-day2" onclick="filterMap('day2')" class="map-btn shrink-0 px-3 py-2 rounded-xl text-xs font-bold border bg-white text-slate-600 border-slate-200">2일차</button>
-      <button type="button" id="btn-map-day3" onclick="filterMap('day3')" class="map-btn shrink-0 px-3 py-2 rounded-xl text-xs font-bold border bg-white text-slate-600 border-slate-200">3일차</button>
-      <button type="button" id="btn-map-day4" onclick="filterMap('day4')" class="map-btn shrink-0 px-3 py-2 rounded-xl text-xs font-bold border bg-white text-slate-600 border-slate-200">4일차</button>
-      <button type="button" id="btn-map-day5" onclick="filterMap('day5')" class="map-btn shrink-0 px-3 py-2 rounded-xl text-xs font-bold border bg-white text-slate-600 border-slate-200">5일차</button>
-      <button type="button" id="btn-map-day6" onclick="filterMap('day6')" class="map-btn shrink-0 px-3 py-2 rounded-xl text-xs font-bold border bg-white text-slate-600 border-slate-200">6일차</button>
-      <button type="button" id="btn-map-day7" onclick="filterMap('day7')" class="map-btn shrink-0 px-3 py-2 rounded-xl text-xs font-bold border bg-white text-slate-600 border-slate-200">7일차</button>
+      <button onclick="filterMap('all')" id="btn-map-all" class="map-btn bg-purple-600 text-white font-bold px-4 py-2.5 rounded-xl shadow-md border border-purple-600 transition text-sm shrink-0">전체 여정</button>
+      <button onclick="filterMap('day1')" id="btn-map-day1" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">1일차 출국</button>
+      <button onclick="filterMap('day2')" id="btn-map-day2" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">2일차 브리즈번</button>
+      <button onclick="filterMap('day3')" id="btn-map-day3" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">3일차 골드코스트</button>
+      <button onclick="filterMap('day4')" id="btn-map-day4" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">4일차 UQ</button>
+      <button onclick="filterMap('day5')" id="btn-map-day5" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">5일차 시드니</button>
+      <button onclick="filterMap('day6')" id="btn-map-day6" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">6일차 블루마운틴</button>
+      <button onclick="filterMap('day7')" id="btn-map-day7" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">7일차 귀국</button>
     </div>
     <div class="relative">
       <div id="map"></div>
@@ -1007,89 +1008,6 @@ const routes = {
 
 let currentMap = null, mapInited = false, mapLayers = [], mapDrawSeq = 0, activeBus = null;
 const osrmCache = {};
-const spots = {
-    icn: { c:[37.4602,126.4407], t:'인천공항', col:'#64748b', i:'✈️' },
-    hgh: { c:[30.2369,120.4344], t:'항주 샤오산공항', col:'#64748b', i:'🛬' },
-    aicity: { c:[30.2820,120.0050], t:'AI시티 체험센터', col:'#0891b2', i:'💡' },
-    hotel_hz: { c:[30.2765,120.0260], t:'플라이주 호텔', col:'#8b5cf6', i:'🏨' },
-    ali: { c:[30.2805,120.0270], t:'알리바바 본사', col:'#f97316', i:'🏢' },
-    robot: { c:[30.1450,120.2180], t:'석호산 로봇기지', col:'#e11d48', i:'🤖' },
-    hotel_sh: { c:[31.1995,121.6915], t:'포동 힐튼가든호텔', col:'#8b5cf6', i:'🏨' },
-    iric: { c:[31.3082,121.3215], t:'IRIC 지능제조센터', col:'#4f46e5', i:'⚙️' },
-    lecture: { c:[31.1765,121.3855], t:'기업인 특강(한인타운)', col:'#e11d48', i:'🎙️' },
-    donghua: { c:[31.2035,121.4165], t:'동화대(변경가능)', col:'#10b981', i:'🎓' },
-    city: { c:[31.2397,121.4900], t:'상해 시내 문화탐방', col:'#059669', i:'🏙️' },
-    pvg: { c:[31.1443,121.8083], t:'상해 푸동공항', col:'#64748b', i:'🛫' }
-};
-const mapHints = {
-    all: '전체 여정: 인천 → 항주(AI시티·플라이주·알리바바·석호산 로봇기지) → 상해(IRIC 지능제조센터·특강·동화대·문화탐방) → 인천',
-    day1: '1일차: 인천공항 ✈️ 항주공항 → AI시티 과학기술 체험센터 → 항주 플라이주 호텔',
-    day2: '2일차: 플라이주 호텔 → 알리바바 본사 → (중식) → 석호산 로봇기지 → 상해 포동 힐튼가든호텔',
-    day3: '3일차: 포동 힐튼가든호텔 → IRIC 지능제조센터 → 현지 기업인 특강(한인타운 인근) → 포동 힐튼가든호텔',
-    day4: '4일차: 포동 힐튼가든호텔 → 동화대학교 공식방문(타 대학 변경 가능) → 상해 시내 문화탐방 → 포동 힐튼가든호텔',
-    day5: '5일차: 포동 힐튼가든호텔 → 상해 푸동국제공항 ✈️ 인천국제공항'
-};
-const routes = {
-    all: {
-        zoom: ['hgh','aicity','hotel_hz','ali','robot','hotel_sh','iric','lecture','donghua','city','pvg'],
-        maxZoom: 8,
-        legs: [
-            { from:'icn', to:'hgh', mode:'air', color:'#0891b2', label:'KE107 출국 (11:40→13:20)', durationMin: 160 },
-            { from:'hgh', to:'aicity', mode:'road', color:'#0891b2' },
-            { from:'aicity', to:'hotel_hz', mode:'road', color:'#0891b2' },
-            { from:'hotel_hz', to:'ali', mode:'road', color:'#f97316' },
-            { from:'ali', to:'robot', mode:'road', color:'#f97316', label:'중식 후 석호산 로봇기지 이동' },
-            { from:'robot', to:'hotel_sh', mode:'road', color:'#f97316', label:'항주 → 상해 이동 (약 3시간)' },
-            { from:'hotel_sh', to:'iric', mode:'road', color:'#4f46e5' },
-            { from:'iric', to:'lecture', mode:'road', color:'#e11d48' },
-            { from:'lecture', to:'hotel_sh', mode:'road', color:'#4f46e5' },
-            { from:'hotel_sh', to:'donghua', mode:'road', color:'#10b981' },
-            { from:'donghua', to:'city', mode:'road', color:'#10b981' },
-            { from:'city', to:'hotel_sh', mode:'road', color:'#10b981' },
-            { from:'hotel_sh', to:'pvg', mode:'road', color:'#64748b' },
-            { from:'pvg', to:'icn', mode:'air', color:'#64748b', label:'KE882 귀국 (11:20→14:25)', durationMin: 125 }
-        ]
-    },
-    day1: {
-        zoom: ['hgh','aicity','hotel_hz'], maxZoom: 11,
-        legs: [
-            { from:'icn', to:'hgh', mode:'air', color:'#0891b2', label:'KE107 (11:40→13:20)', durationMin: 160 },
-            { from:'hgh', to:'aicity', mode:'road', color:'#0891b2' },
-            { from:'aicity', to:'hotel_hz', mode:'road', color:'#0891b2' }
-        ]
-    },
-    day2: {
-        zoom: ['hotel_hz','ali','robot','hotel_sh'], maxZoom: 9,
-        legs: [
-            { from:'hotel_hz', to:'ali', mode:'road', color:'#f97316' },
-            { from:'ali', to:'robot', mode:'road', color:'#f97316', label:'중식 후 석호산 로봇기지 이동' },
-            { from:'robot', to:'hotel_sh', mode:'road', color:'#f97316', label:'항주 → 상해 이동 (약 3시간)' }
-        ]
-    },
-    day3: {
-        zoom: ['hotel_sh','iric','lecture'], maxZoom: 11,
-        legs: [
-            { from:'hotel_sh', to:'iric', mode:'road', color:'#4f46e5' },
-            { from:'iric', to:'lecture', mode:'road', color:'#e11d48' },
-            { from:'lecture', to:'hotel_sh', mode:'road', color:'#4f46e5' }
-        ]
-    },
-    day4: {
-        zoom: ['hotel_sh','donghua','city'], maxZoom: 11,
-        legs: [
-            { from:'hotel_sh', to:'donghua', mode:'road', color:'#10b981' },
-            { from:'donghua', to:'city', mode:'road', color:'#10b981' },
-            { from:'city', to:'hotel_sh', mode:'road', color:'#10b981' }
-        ]
-    },
-    day5: {
-        zoom: ['hotel_sh','pvg'], maxZoom: 12,
-        legs: [
-            { from:'hotel_sh', to:'pvg', mode:'road', color:'#64748b' },
-            { from:'pvg', to:'icn', mode:'air', color:'#64748b', label:'KE882 (11:20→14:25)', durationMin: 125 }
-        ]
-    }
-};
 function isMobileView() { return window.matchMedia('(max-width: 768px)').matches; }
 function pathMeters(path) {
     let total = 0;
@@ -1437,13 +1355,13 @@ window.mapZoom = mapZoom;
 
 function setMapBtn(day){
   document.querySelectorAll('.map-btn').forEach(btn=>{
-    btn.classList.remove('bg-sky-600','text-white','border-sky-600','bg-purple-600','border-purple-600');
+    btn.classList.remove('bg-sky-600','text-white','border-sky-600','bg-purple-600','border-purple-600','bg-cyan-600','border-cyan-600');
     btn.classList.add('bg-white','text-slate-600','border-slate-200');
   });
   const targetBtn=document.getElementById('btn-map-'+day);
   if(targetBtn){
     targetBtn.classList.remove('bg-white','text-slate-600','border-slate-200');
-    targetBtn.classList.add('bg-sky-600','text-white','border-sky-600');
+    targetBtn.classList.add('bg-purple-600','text-white','border-purple-600');
   }
 }
 function initMap(initialKey){
