@@ -33,9 +33,14 @@
             background-size: cover; background-position: center 40%; background-attachment: fixed;
         }
         @media (max-width: 768px){ .hero-bg { background-attachment: scroll; } }
-        #map { height: 500px; width: 100%; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,.1); z-index: 10; }
+        #map { height: 500px; width: 100%; border-radius: 1rem; z-index: 10; background: #e2e8f0; }
         @media (min-width: 768px) { #map { height: 600px; } }
         @media (max-width: 768px) { #map { height: 440px; } }
+        /* Tailwind preflight breaks Leaflet tiles — force override */
+        .leaflet-container { background: #e2e8f0 !important; font: inherit; }
+        .leaflet-container img.leaflet-tile,
+        .leaflet-container .leaflet-marker-icon,
+        .leaflet-pane img { max-width: none !important; max-height: none !important; width: auto !important; height: auto !important; }
         .custom-icon { background: transparent; border: none; }
         .map-pin-wrap { display: flex; flex-direction: column; align-items: center; }
         .map-pin-dot {
@@ -422,32 +427,35 @@
   </div>
 </section>
 
-<section id="map-section" class="py-16 bg-white border-t border-slate-100">
-  <div class="max-w-6xl mx-auto px-4">
-    <p class="text-cyan-600 font-bold text-sm tracking-widest mb-2">ROUTE MAP</p>
-    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">한눈에 보는 탐방 동선</h2>
-    <p class="text-slate-500 text-sm mb-3">일자별 버튼을 누르면 실제 도로(OSRM) · 항공 경로가 순차 재생됩니다.</p>
-    <p id="map-hint" class="text-slate-600 text-sm mb-4 font-medium">전체 여정 동선을 준비 중입니다.</p>
-    <div class="flex gap-2 overflow-x-auto no-scrollbar mb-4 pb-1">
-      <button onclick="filterMap('all')" id="btn-map-all" class="map-btn bg-purple-600 text-white font-bold px-4 py-2.5 rounded-xl shadow-md border border-purple-600 transition text-sm shrink-0">전체 여정</button>
-      <button onclick="filterMap('day1')" id="btn-map-day1" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">1일차 출국</button>
-      <button onclick="filterMap('day2')" id="btn-map-day2" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">2일차 브리즈번</button>
-      <button onclick="filterMap('day3')" id="btn-map-day3" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">3일차 골드코스트</button>
-      <button onclick="filterMap('day4')" id="btn-map-day4" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">4일차 UQ</button>
-      <button onclick="filterMap('day5')" id="btn-map-day5" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">5일차 시드니</button>
-      <button onclick="filterMap('day6')" id="btn-map-day6" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">6일차 블루마운틴</button>
-      <button onclick="filterMap('day7')" id="btn-map-day7" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm shrink-0">7일차 귀국</button>
+<section id="map-section" class="py-16 bg-slate-50 border-t border-slate-200 overflow-hidden relative">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-8 relative z-20">
+      <span class="text-purple-600 font-bold tracking-wider uppercase text-sm bg-purple-100 px-4 py-1.5 rounded-full border border-purple-200 shadow-sm"><i class="fa-solid fa-map-location-dot mr-1"></i> SMART ROUTE</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mt-5">한눈에 보는 동선 지도</h2>
+      <p class="text-slate-500 mt-3 text-sm font-medium">실제 도로를 따라 이동 순서가 천천히 그려집니다. 항공 구간만 점선입니다.</p>
+      <p id="map-hint" class="text-slate-400 mt-1 text-xs">브리즈번 입성부터 시드니 귀국까지</p>
     </div>
-    <div class="relative">
+    <div class="flex flex-wrap justify-center gap-2 mb-6 relative z-20">
+      <button onclick="filterMap('all')" id="btn-map-all" class="map-btn bg-purple-600 text-white font-bold px-4 py-2.5 rounded-xl shadow-md border border-purple-600 transition text-sm">전체 여정</button>
+      <button onclick="filterMap('day1')" id="btn-map-day1" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm">1일차 출국</button>
+      <button onclick="filterMap('day2')" id="btn-map-day2" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm">2일차 브리즈번</button>
+      <button onclick="filterMap('day3')" id="btn-map-day3" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm">3일차 골드코스트</button>
+      <button onclick="filterMap('day4')" id="btn-map-day4" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm">4일차 UQ</button>
+      <button onclick="filterMap('day5')" id="btn-map-day5" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm">5일차 시드니</button>
+      <button onclick="filterMap('day6')" id="btn-map-day6" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm">6일차 블루마운틴</button>
+      <button onclick="filterMap('day7')" id="btn-map-day7" class="map-btn bg-white text-slate-600 font-bold px-4 py-2.5 rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 transition text-sm">7일차 귀국</button>
+    </div>
+    <div class="max-w-5xl mx-auto border border-slate-200 rounded-2xl p-1 shadow-2xl bg-white relative z-10">
       <div id="map"></div>
-      <div id="map-distance" class="hidden absolute top-3 right-3 z-[450] bg-white/95 backdrop-blur border border-slate-200 rounded-xl px-3 py-2 shadow-lg text-right">
-        <p id="map-distance-leg" class="text-xs font-bold text-slate-800"></p>
-        <p id="map-distance-time" class="text-[11px] text-sky-700 font-bold"></p>
-        <p id="map-distance-km" class="text-[11px] text-slate-500"></p>
+      <div id="map-distance" class="hidden absolute top-3 right-3 z-[400] bg-white/92 backdrop-blur px-3 py-2 rounded-xl shadow pointer-events-none text-right">
+        <p class="text-[10px] font-bold text-slate-400 tracking-wide">대략 이동</p>
+        <p id="map-distance-leg" class="font-bold text-xs text-slate-800 leading-snug mt-0.5"></p>
+        <p id="map-distance-time" class="font-black text-sm text-purple-600 mt-0.5"></p>
+        <p id="map-distance-km" class="text-[10px] font-bold text-slate-500 mt-0.5"></p>
       </div>
       <div class="map-zoom-btns">
-        <button type="button" onclick="mapZoom(1)" aria-label="확대">+</button>
-        <button type="button" onclick="mapZoom(-1)" aria-label="축소">−</button>
+        <button type="button" onclick="mapZoom(1)" aria-label="줌인">+</button>
+        <button type="button" onclick="mapZoom(-1)" aria-label="줌아웃">−</button>
       </div>
     </div>
   </div>
@@ -1380,7 +1388,15 @@ function ensureMapReady(){
   setTimeout(()=>currentMap.invalidateSize(),120);
   return true;
 }
-window.filterMap=function(day){ if(!ensureMapReady()) return; setMapBtn(day); drawMap(day); };
+window.filterMap=function(day){
+  if(!ensureMapReady()) return;
+  setMapBtn(day);
+  if(currentMap){
+    currentMap.invalidateSize(true);
+    setTimeout(()=>currentMap && currentMap.invalidateSize(true), 180);
+  }
+  drawMap(day);
+};
 
 document.addEventListener('DOMContentLoaded',()=>{
   setDDayLogic();
